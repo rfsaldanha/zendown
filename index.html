@@ -62,8 +62,54 @@
   <main id="main" class="col-md-9"><div class="section level1">
 <div class="page-header"><h1 id="zendown">zendown<a class="anchor" aria-label="anchor" href="#zendown"></a>
 </h1></div>
-<p><!-- badges: start --> <a href="https://github.com/rfsaldanha/zendown/actions/workflows/R-CMD-check.yaml" class="external-link"><img src="https://github.com/rfsaldanha/zendown/actions/workflows/R-CMD-check.yaml/badge.svg" alt="R-CMD-check"></a> <!-- badges: end --></p>
-<p>Simple R package to download files from Zenodo.</p>
+<!-- badges: start -->
+
+<!-- badges: end -->
+<p>A simple R package to download files from Zenodo.</p>
+<div class="section level2">
+<h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
+</h2>
+<p>You can install the development version of zendown from <a href="https://github.com/" class="external-link">GitHub</a> with:</p>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># install.packages("remotes")</span></span>
+<span><span class="fu">remotes</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"rfsaldanha/zendown"</span><span class="op">)</span></span></code></pre></div>
+</div>
+<div class="section level2">
+<h2 id="example">Example<a class="anchor" aria-label="anchor" href="#example"></a>
+</h2>
+<p>First, you need to find the Zenodo deposition code. It is the number that appears on the end of a Zenodo deposition link. The code number also appears on the Zenodo DOI of the version.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a>https<span class="sc">:</span><span class="er">//</span>zenodo.org<span class="sc">/</span>records<span class="sc">/</span><span class="dv">10950327</span></span></code></pre></div>
+<p>Deposition code: 10950327</p>
+<p>With the deposition code, get a list of files available at the deposition</p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://rfsaldanha.github.io/zendown/">zendown</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">res</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/file_list.html">file_list</a></span><span class="op">(</span>deposit_id <span class="op">=</span> <span class="fl">10950327</span><span class="op">)</span></span>
+<span><span class="va">res</span></span>
+<span><span class="co">#&gt; # A tibble: 9 × 5</span></span>
+<span><span class="co">#&gt;   id                                   filename   filesize checksum links       </span></span>
+<span><span class="co">#&gt;   &lt;chr&gt;                                &lt;chr&gt;         &lt;dbl&gt; &lt;chr&gt;    &lt;list&gt;      </span></span>
+<span><span class="co">#&gt; 1 354f3f9c-68c1-4371-bd85-54a619e0bf37 indi_0002…     4312 ae0e78c… &lt;named list&gt;</span></span>
+<span><span class="co">#&gt; 2 2009399c-e516-41dc-a93e-95221e4c5a87 indi_0002…    10125 7d102ad… &lt;named list&gt;</span></span>
+<span><span class="co">#&gt; 3 43250883-cce6-45d0-995e-89b9f5095dca indi_0002…    25198 fc84fef… &lt;named list&gt;</span></span>
+<span><span class="co">#&gt; 4 1b5b9285-d320-481c-963e-497ae92fcd07 indi_0002…  1041878 cfbe847… &lt;named list&gt;</span></span>
+<span><span class="co">#&gt; 5 86670252-1b0e-42ef-b490-622040b2f95f indi_0002…  2229008 7fb9d70… &lt;named list&gt;</span></span>
+<span><span class="co">#&gt; 6 8703e1fb-58fb-4cd6-aa31-7080177f1e0e indi_0002…    79814 1c960f8… &lt;named list&gt;</span></span>
+<span><span class="co">#&gt; 7 2509c72c-5a0c-4dc8-862d-a759e7d5729f indi_0002…    23929 8752b55… &lt;named list&gt;</span></span>
+<span><span class="co">#&gt; 8 ed4bdcaa-7cb0-444f-a44f-1e6caf86f53f indi_0002…   292771 a388cb0… &lt;named list&gt;</span></span>
+<span><span class="co">#&gt; 9 baecc25f-d7c0-42c1-b3d0-397f2ec1eb6d indi_0002…   218872 fe15a4f… &lt;named list&gt;</span></span></code></pre></div>
+<p>You can download all files.</p>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="reference/zendown.html">zendown</a></span><span class="op">(</span>file_list <span class="op">=</span> <span class="va">res</span>, dest <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<p>Or a single file by specifying its name.</p>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="reference/zendown.html">zendown</a></span><span class="op">(</span>file_list <span class="op">=</span> <span class="va">res</span>, file_name <span class="op">=</span> <span class="st">"indi_0002_regsaude_res_year.parquet"</span>, dest <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+</div>
+<div class="section level2">
+<h2 id="zen4r">zen4R<a class="anchor" aria-label="anchor" href="#zen4r"></a>
+</h2>
+<p>To fully explore the Zenodo API possibilities, check the <a href="https://github.com/eblondel/zen4R" class="external-link">zen4R</a> package.</p>
+</div>
 </div>
   </main><aside class="col-md-3"><div class="license">
 <h2 data-toc-skip>License</h2>
@@ -88,7 +134,12 @@
 </ul>
 </div>
 
-
+<div class="dev-status">
+<h2 data-toc-skip>Dev status</h2>
+<ul class="list-unstyled">
+<li><a href="https://github.com/rfsaldanha/zendown/actions/workflows/R-CMD-check.yaml" class="external-link"><img src="https://github.com/rfsaldanha/zendown/actions/workflows/R-CMD-check.yaml/badge.svg" alt="R-CMD-check"></a></li>
+</ul>
+</div>
 
   </aside>
 </div>
