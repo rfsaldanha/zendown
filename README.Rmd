@@ -1,0 +1,68 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+
+# zendown
+
+<!-- badges: start -->
+
+[![R-CMD-check](https://github.com/rfsaldanha/zendown/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/rfsaldanha/zendown/actions/workflows/R-CMD-check.yaml)
+
+<!-- badges: end -->
+
+A simple R package to download files from Zenodo.
+
+## Installation
+
+You can install the development version of zendown from [GitHub](https://github.com/) with:
+
+``` r
+# install.packages("remotes")
+remotes::install_github("rfsaldanha/zendown")
+```
+
+## Example
+
+First, you need to find the Zenodo deposition code. It is the number that appears on the end of a Zenodo deposition link. The code number also appears on the Zenodo DOI of the version.
+
+```         
+https://zenodo.org/records/10950327
+```
+
+Deposition code: 10950327
+
+With the deposition code, get a list of files available at the deposition
+
+```{r}
+library(zendown)
+
+res <- file_list(deposit_id = 10950327)
+res
+```
+
+You can download all files.
+
+``` r
+zendown(file_list = res, dest = tempdir())
+```
+
+Or a single file by specifying its name.
+
+``` r
+zendown(file_list = res, file_name = "indi_0002_regsaude_res_year.parquet", dest = tempdir())
+```
+
+## zen4R
+
+To fully explore the Zenodo API possibilities, check the [zen4R](https://github.com/eblondel/zen4R) package.
