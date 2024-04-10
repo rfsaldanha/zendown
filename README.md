@@ -1,2 +1,2 @@
 # zendown
-Download files from Zenodo
+Simple R package to download files from Zenodo.
