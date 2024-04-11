@@ -1,3 +1,24 @@
+test_that("delete_mirror works", {
+  skip_on_cran()
+
+  delete_mirror(deposit_id = 10950327)
+
+  cache_dir <- rappdirs::user_cache_dir(appname = "zendown")
+  cache_path <- fs::path(cache_dir, 10950327)
+
+  expect_false(dir.exists(cache_path))
+})
+
+test_that("delete_all_mirrors works", {
+  skip_on_cran()
+
+  delete_all_mirrors()
+
+  cache_dir <- rappdirs::user_cache_dir(appname = "zendown")
+
+  expect_false(dir.exists(cache_dir))
+})
+
 test_that("file_list works", {
   skip_on_cran()
 
@@ -33,7 +54,7 @@ test_that("download_deposit works with single file", {
 test_that("mirror_deposit works", {
   skip_on_cran()
 
-  res <- mirror_deposit(deposit_id = 10959197)
+  res <- mirror_deposit(deposit_id = 10959197, clear_cache = TRUE, quiet = TRUE)
 
   expect_true(dir.exists(res))
 })
@@ -41,7 +62,7 @@ test_that("mirror_deposit works", {
 test_that("mirror_deposit works with single file", {
   skip_on_cran()
 
-  res <- mirror_deposit(deposit_id = 10959197, file_name = "iris.rds")
+  res <- mirror_deposit(deposit_id = 10959197, file_name = "iris.rds", clear_cache = TRUE, quiet = TRUE)
 
   expect_true(dir.exists(res))
 })
@@ -49,28 +70,9 @@ test_that("mirror_deposit works with single file", {
 test_that("zen_file works", {
   skip_on_cran()
 
-  res <- zen_file(deposit_id = 10959197, file_name = "iris.rds")
+  res <- zen_file(deposit_id = 10959197, file_name = "iris.rds", clear_cache = TRUE, quiet = TRUE)
 
   expect_true(file.exists(res))
 })
 
-test_that("delete_mirror works", {
-  skip_on_cran()
 
-  delete_mirror(deposit_id = 10950327)
-
-  cache_dir <- rappdirs::user_cache_dir(appname = "zendown")
-  cache_path <- fs::path(cache_dir, 10950327)
-
-  expect_false(dir.exists(cache_path))
-})
-
-test_that("delete_all_mirrors works", {
-  skip_on_cran()
-
-  delete_all_mirrors()
-
-  cache_dir <- rappdirs::user_cache_dir(appname = "zendown")
-
-  expect_false(dir.exists(cache_dir))
-})

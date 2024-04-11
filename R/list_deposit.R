@@ -9,7 +9,7 @@ list_deposit <- function(deposit_id){
   checkmate::assert_number(x = deposit_id)
 
   # Check internet
-  if(!curl::has_internet()) stop("It appears that your local Internet connection is not working.")
+  if(!curl::has_internet()) cli::cli_abort("It appears that your local Internet connection is not working.")
 
   # Check Zenodo
   if(!RCurl::url.exists("https://zenodo.org/", timeout.ms = 5000)) stop("It appears that Zenodo is down.")
