@@ -21,9 +21,9 @@ zendown <- function(file_list, file_name = NULL, dest, quiet = FALSE){
 
   if(is.null(file_name)){
     for(f in 1:nrow(file_list)){
-      url <- file_list[["links"]][[f]]$download
+      url <- file_list[[f,"download"]]
 
-      file_path <- file.path(dest,file_list[['filename']][[f]])
+      file_path <- file.path(dest,res[[f,"filename"]])
       checkmate::assert_path_for_output(x = file_path, overwrite = TRUE)
 
       utils::download.file(url = url, destfile = file_path,
@@ -31,7 +31,7 @@ zendown <- function(file_list, file_name = NULL, dest, quiet = FALSE){
     }
   } else {
     file_row <- file_list[which(file_list$filename==file_name),]
-    url <- file_row[["links"]][[1]]$download
+    url <- file_row$download
 
     file_path <- file.path(dest,file_name)
     checkmate::assert_path_for_output(x = file_path, overwrite = TRUE)

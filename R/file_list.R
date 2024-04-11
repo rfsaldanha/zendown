@@ -23,7 +23,8 @@ file_list <- function(deposit_id){
     httr2::req_perform() |>
     httr2::resp_body_json() |>
     tibble::tibble() |>
-    tidyr::unnest_wider(1)
+    tidyr::unnest_wider(1) |>
+    tidyr::unnest_wider(col = "links")
 
   return(res)
 }
