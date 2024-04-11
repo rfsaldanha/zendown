@@ -22,7 +22,11 @@ mirror_deposit <- function(deposit_id, file_name = NULL, clear_cache = FALSE, qu
 
   # Clear mirror
   if(clear_cache & fs::dir_exists(cache_path)){
-    fs::dir_delete(cache_path)
+    if(is.null(file_name)){
+      fs::dir_delete(cache_path)
+    } else if(!is.null(file_name)){
+      fs::file_delete(fs::path(cache_path,file_name))
+    }
   }
 
   # Create mirror for deposit
