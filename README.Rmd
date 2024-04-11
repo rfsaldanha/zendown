@@ -55,11 +55,38 @@ delete_mirror(deposit_id = 10959197)
 ```
 
 ```{r}
-readRDS(file = zen_file(deposit_id = 10959197, file_name = "iris.rds")) |>
+my_iris <- zen_file(deposit_id = 10959197, file_name = "iris.rds") |>
+  readRDS()
+
+head(my_iris)
+```
+
+The function will create a cache on your machine with all accessed files, avoiding re-downloading them when you access some file again.
+
+## More examples
+
+```{r}
+# https://zenodo.org/records/10848
+zen_file(10848, "DOAJ_Soc_Licenses_Correct.csv") |>
+  read.csv2() |>
+  tibble::tibble() |>
+  head()
+```
+```{r}
+# https://zenodo.org/records/10947952
+zen_file(10947952, "2m_temperature_max.parquet") |>
+  arrow::read_parquet() |>
+  tibble::tibble() |>
   head()
 ```
 
-The function will create a local cache, avoiding re-downloading the file when you access the file again.
+```{r}
+# https://zenodo.org/records/10889682
+zen_file(10889682, "total_precipitation_2023-09-01_2023-09-30_day_sum.nc") |>
+  terra::rast() |>
+  terra::plot(1)
+```
+
 
 ## zen4R
 
