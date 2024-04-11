@@ -9,8 +9,7 @@
 
 <!-- badges: end -->
 
-This package provide functions to access, download and cache files
-deposited on Zenodo.
+Access, download and locally cache files deposited on Zenodo easily.
 
 ## Installation
 
@@ -54,8 +53,8 @@ readRDS(file = zen_file(deposit_id = 10959197, file_name = "iris.rds")) |>
 #> 6          5.4         3.9          1.7         0.4  setosa
 ```
 
-The function will create a local cache of the file, avoiding
-re-downloading the file when you access the file again.
+The function will create a local cache, avoiding re-downloading the file
+when you access the file again.
 
 ## zen4R
 
