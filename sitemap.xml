@@ -19,12 +19,21 @@
     <loc>https://rfsaldanha.github.io/zendown/news/index.html</loc>
   </url>
   <url>
-    <loc>https://rfsaldanha.github.io/zendown/reference/file_list.html</loc>
+    <loc>https://rfsaldanha.github.io/zendown/reference/delete_mirror.html</loc>
+  </url>
+  <url>
+    <loc>https://rfsaldanha.github.io/zendown/reference/download_deposit.html</loc>
   </url>
   <url>
     <loc>https://rfsaldanha.github.io/zendown/reference/index.html</loc>
   </url>
   <url>
-    <loc>https://rfsaldanha.github.io/zendown/reference/zendown.html</loc>
+    <loc>https://rfsaldanha.github.io/zendown/reference/list_deposit.html</loc>
+  </url>
+  <url>
+    <loc>https://rfsaldanha.github.io/zendown/reference/mirror_deposit.html</loc>
+  </url>
+  <url>
+    <loc>https://rfsaldanha.github.io/zendown/reference/zen_file.html</loc>
   </url>
 </urlset>
