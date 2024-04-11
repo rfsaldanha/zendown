@@ -21,7 +21,7 @@ knitr::opts_chunk$set(
 
 <!-- badges: end -->
 
-A simple R package to download files from Zenodo.
+This package provide functions to access, download and cache files deposited on Zenodo.
 
 ## Installation
 
@@ -34,35 +34,33 @@ remotes::install_github("rfsaldanha/zendown")
 
 ## Example
 
-First, you need to find the Zenodo deposition code. It is the number that appears on the end of a Zenodo deposition link. The code number also appears on the Zenodo DOI of the version.
-
-```         
-https://zenodo.org/records/10950327
-```
-
-Deposition code: 10950327
-
-With the deposition code, get a list of files available at the deposition
-
 ```{r}
 library(zendown)
-
-res <- file_list(deposit_id = 10950327)
-res
 ```
 
-You can download all files.
+This [Zenodo deposit](https://zenodo.org/records/10959197) contains RDS files from examples datasets.
 
-``` r
-zendown(file_list = res, dest = tempdir())
+First, you need to find the Zenodo deposit code. It is the number that appears on the end of a Zenodo deposit link. The code number also appears on the Zenodo DOI.
+
+```         
+https://zenodo.org/records/10959197
 ```
 
-Or a single file by specifying its name.
+Deposition code: 10959197
 
-``` r
-zendown(file_list = res, file_name = "indi_0002_regsaude_res_year.parquet", dest = tempdir())
+With the deposit code and the desired file name, you can just access the file with the `zen_file` function.
+
+```{r, echo=FALSE}
+delete_mirror(deposit_id = 10959197)
 ```
+
+```{r}
+readRDS(file = zen_file(deposit_id = 10959197, file_name = "iris.rds")) |>
+  head()
+```
+
+The function will create a local cache of the file, avoiding re-downloading the file when you access the file again.
 
 ## zen4R
 
-To fully explore the Zenodo API possibilities, check the [zen4R](https://github.com/eblondel/zen4R) package.
+To explore the Zenodo API possibilities to problematically store files and other procedures, check the [zen4R](https://github.com/eblondel/zen4R) package.

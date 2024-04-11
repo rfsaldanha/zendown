@@ -1,0 +1,67 @@
+#' Mirror a Zenodo deposit locally
+#'
+#' Mirror an entire Zenodo deposit or a specific file locally. The mirror is a folder with the deposit files created at the cache folder of the operating system.
+#'
+#' @param deposit_id numeric. The Zenodo deposit id.
+#' @param file_name character. If `NULL`, all files from the file list. If a file name is specified, only this file will be downloaded.
+#' @param clear_cache logical. If the mirror already exists, clear its content.
+#' @param quiet logical. Show download info and progress bar.
+#'
+#' @return a string with the mirror path.
+#' @export
+#'
+mirror_deposit <- function(deposit_id, file_name = NULL, clear_cache = FALSE, quiet = FALSE){
+  # Assertions
+  checkmate::assert_number(x = deposit_id)
+  checkmate::assert_logical(x = clear_cache)
+  checkmate::assert_logical(x = quiet)
+
+  # Cache path
+  cache_dir <- rappdirs::user_cache_dir(appname = "zendown")
+  cache_path <- fs::path(cache_dir, deposit_id)
+
+  # Clear mirror
+  if(clear_cache){
+    fs::dir_delete(cache_path)
+  }
+
+  # Create mirror for deposit
+  if(!fs::dir_exists(cache_path)){
+    fs::dir_create(cache_path)
+  }
+
+  # Get deposit file list
+  deposit_file_list <- list_deposit(deposit_id = deposit_id)
+  checkmate::assert_choice(x = file_name, null.ok = TRUE, choices = deposit_file_list$filename)
+
+  # Download deposit files to mirror if not present
+  if(!is.null(file_name)){ # Single file
+    file_path <- fs::path(cache_path, file_name)
+    if(!fs::file_exists(file_path)){
+      download_deposit(
+        list_deposit = deposit_file_list,
+        file_name = file_name,
+        dest = cache_path,
+        quiet = quiet
+      )
+    }
+  } else if(is.null(file_name)){ # All deposit
+    for(f in deposit_file_list$filename){
+      file_path <- fs::path(cache_path, f)
+      if(!fs::file_exists(file_path)){
+        download_deposit(
+          list_deposit = deposit_file_list,
+          file_name = f,
+          dest = cache_path,
+          quiet = quiet
+        )
+      }
+    }
+  }
+
+  # Load file
+  return(cache_path)
+}
+
+
+

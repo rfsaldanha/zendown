@@ -1,16 +1,15 @@
-#' Download files from a Zenodo deposition list of files
+#' Download files from a Zenodo deposit
 #'
-#' @param file_list data.frame or tibble. Obtained with `file_list`.
+#' @param list_deposit data.frame or tibble. Obtained with [list_deposit].
 #' @param file_name character. If `NULL`, all files from the file list. If a file name is specified, only this file will be downloaded.
 #' @param dest character. Destination folder.
 #' @param quiet logical. Show download info and progress bar.
 #'
-#' @return the downloaded file(s).
 #' @export
-zendown <- function(file_list, file_name = NULL, dest, quiet = FALSE){
+download_deposit <- function(list_deposit, file_name = NULL, dest, quiet = FALSE){
   # Assertions
-  checkmate::assert_data_frame(file_list)
-  checkmate::assert_choice(x = file_name, null.ok = TRUE, choices = file_list$filename)
+  checkmate::assert_data_frame(list_deposit)
+  checkmate::assert_choice(x = file_name, null.ok = TRUE, choices = list_deposit$filename)
   checkmate::assert_logical(x = quiet)
 
   # Check internet
@@ -20,20 +19,20 @@ zendown <- function(file_list, file_name = NULL, dest, quiet = FALSE){
   if(!RCurl::url.exists("https://zenodo.org/", timeout.ms = 5000)) stop("It appears that Zenodo is down.")
 
   if(is.null(file_name)){
-    for(f in 1:nrow(file_list)){
-      url <- file_list[[f,"download"]]
+    for(f in 1:nrow(list_deposit)){
+      url <- list_deposit[[f,"download"]]
 
-      file_path <- file.path(dest,res[[f,"filename"]])
+      file_path <- fs::path(dest,list_deposit[[f,"filename"]])
       checkmate::assert_path_for_output(x = file_path, overwrite = TRUE)
 
       utils::download.file(url = url, destfile = file_path,
                     quiet = quiet, mode = "wb")
     }
   } else {
-    file_row <- file_list[which(file_list$filename==file_name),]
+    file_row <- list_deposit[which(list_deposit$filename==file_name),]
     url <- file_row$download
 
-    file_path <- file.path(dest,file_name)
+    file_path <- fs::path(dest,file_name)
     checkmate::assert_path_for_output(x = file_path, overwrite = TRUE)
 
     utils::download.file(url = url, destfile = file_path,

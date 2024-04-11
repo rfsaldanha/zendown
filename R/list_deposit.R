@@ -1,10 +1,10 @@
-#' Get a list of files available at a Zenodo deposition
+#' Get a list of files available at a Zenodo deposit
 #'
-#' @param deposit_id numeric. The Zenodo deposition id.
+#' @param deposit_id numeric. The Zenodo deposit id.
 #'
 #' @return a tibble.
 #' @export
-file_list <- function(deposit_id){
+list_deposit <- function(deposit_id){
   # Assertions
   checkmate::assert_number(x = deposit_id)
 
