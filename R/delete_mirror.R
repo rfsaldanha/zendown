@@ -14,3 +14,17 @@ delete_mirror <- function(deposit_id){
     fs::dir_delete(path = cache_path)
   }
 }
+
+#' Delete all mirrors
+#'
+#' This will delete all mirrors stored locally.
+#'
+#' @export
+delete_all_mirrors <- function(){
+  # Cache path
+  cache_dir <- rappdirs::user_cache_dir(appname = "zendown")
+
+  if(fs::dir_exists(path = cache_dir)){
+    fs::dir_delete(path = cache_dir)
+  }
+}

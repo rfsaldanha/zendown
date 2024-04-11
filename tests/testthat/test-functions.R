@@ -64,3 +64,13 @@ test_that("delete_mirror works", {
 
   expect_false(dir.exists(cache_path))
 })
+
+test_that("delete_all_mirrors works", {
+  skip_on_cran()
+
+  delete_all_mirrors()
+
+  cache_dir <- rappdirs::user_cache_dir(appname = "zendown")
+
+  expect_false(dir.exists(cache_dir))
+})
