@@ -13,8 +13,7 @@ Access, download and locally cache files deposited on Zenodo easily.
 
 ## Installation
 
-You can install the development version of zendown from
-[GitHub](https://github.com/) with:
+You can install the development version of zendown from GitHub with:
 
 ``` r
 # install.packages("remotes")
