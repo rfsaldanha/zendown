@@ -1,5 +1,5 @@
 Package: zendown
-Title: Access Files from Zenodo Deposits
+Title: Access Files from 'Zenodo' Deposits
 Version: 0.0.1
 Authors@R: 
     person("Raphael", "Saldanha", , "raphael.de-freitas-saldanha@inria.fr", role = c("aut", "cre"),
