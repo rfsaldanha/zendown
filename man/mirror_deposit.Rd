@@ -7,6 +7,7 @@
 mirror_deposit(
   deposit_id,
   file_name = NULL,
+  cache_type = NULL,
   clear_cache = FALSE,
   quiet = FALSE
 )
@@ -15,6 +16,8 @@ mirror_deposit(
 \item{deposit_id}{numeric. The Zenodo deposit id.}
 
 \item{file_name}{character. If \code{NULL}, all files from the file list. If a file name is specified, only this file will be downloaded.}
+
+\item{cache_type}{character. If \code{NULL}, the package will check the enviroment variable \code{zendown_cache_type} setting and use it. If \code{zendown_cache_type} is not set, the function will default to a temporary cache. The argument can be set to \code{temporary} to store the cache in a temporary system folder and \code{persistent} to store the cache in a persistent system folder.}
 
 \item{clear_cache}{logical. If the mirror already exists, clear its content.}
 
@@ -26,6 +29,18 @@ a string with the mirror path.
 \description{
 Mirror an entire Zenodo deposit or a specific file locally. The mirror is a folder with the deposit files created at the cache folder of the operating system.
 }
+\section{Cache type}{
+
+
+The Zenodo mirror will be stored locally on a system folder. This folder can be temporary, cleared when the R session is ended, or persistent across sections and reboots.
+
+If the \code{cache_type} argument is \code{NULL} the package will check the environment variable \code{zendown_cache_type}. If set, the package will use its value. If not set, a temporary cache folder will be used as default.
+
+You can set the environment variable with \code{Sys.setenv("zendown_cache_type" = "persistent")} or \code{Sys.setenv("zendown_cache_type" = "temporary")}. To unset this variable, use \code{Sys.unsetenv("zendown_cache_type")}.
+
+The \code{cache_type} argument can also be set directly as \code{temporary} or \code{persistent}.
+}
+
 \examples{
 \dontshow{if (curl::has_internet() & RCurl::url.exists("https://zenodo.org/records/10959197", timeout.ms = 5000)) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 # https://zenodo.org/records/10959197

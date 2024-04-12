@@ -4,7 +4,7 @@
 \alias{delete_all_mirrors}
 \title{Delete all deposit mirrors}
 \usage{
-delete_all_mirrors()
+delete_all_mirrors(cache_type = NULL)
 }
 \value{
 No return value. The function deletes all deposits mirrored on the system.

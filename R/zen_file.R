@@ -15,10 +15,11 @@
 #' file.exists(zen_file_path)
 #'
 #' @export
-zen_file <- function(deposit_id, file_name, clear_cache = FALSE, quiet = FALSE){
+zen_file <- function(deposit_id, file_name, cache_type = NULL, clear_cache = FALSE, quiet = FALSE){
   mirror_path <- mirror_deposit(
     deposit_id = deposit_id,
     file_name = file_name,
+    cache_type = cache_type,
     clear_cache = clear_cache,
     quiet = quiet
   )

@@ -4,7 +4,7 @@
 \alias{delete_mirror}
 \title{Delete a deposit mirror}
 \usage{
-delete_mirror(deposit_id)
+delete_mirror(deposit_id, cache_type = NULL)
 }
 \arguments{
 \item{deposit_id}{numeric. The Zenodo deposit id.}

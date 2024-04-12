@@ -63,6 +63,26 @@ head(my_iris)
 
 The function will create a cache on your machine with all accessed files, avoiding re-downloading them when you access some file again.
 
+## Cache
+
+By default, the cache is stored on a temporary folder that is cleaned when the R session is ended.
+
+To use a persistent cache, available across sessions and reboots, you can set an environment variable. First, edit your environment configuration file with. 
+
+```{r, eval=FALSE}
+usethis::edit_r_environ()
+```
+
+And add the following line:
+
+```{r}
+zendown_cache_type = "persistent"
+```
+
+Save the file and restart R. On RStudio: Session -> Restart R
+
+After this, all cache will be persistent. The package provide functions to delete a specific Zenodo deposit cache `?delete_mirror` and to delete all cache `?delete_all_mirrors`.
+
 ## More examples
 
 ```{r}
@@ -72,6 +92,7 @@ zen_file(10848, "DOAJ_Soc_Licenses_Correct.csv") |>
   tibble::tibble() |>
   head()
 ```
+
 ```{r}
 # https://zenodo.org/records/10947952
 zen_file(10947952, "2m_temperature_max.parquet") |>

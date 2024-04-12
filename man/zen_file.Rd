@@ -4,7 +4,13 @@
 \alias{zen_file}
 \title{Access a Zenodo deposit file}
 \usage{
-zen_file(deposit_id, file_name, clear_cache = FALSE, quiet = FALSE)
+zen_file(
+  deposit_id,
+  file_name,
+  cache_type = NULL,
+  clear_cache = FALSE,
+  quiet = FALSE
+)
 }
 \arguments{
 \item{deposit_id}{numeric. The Zenodo deposit id.}

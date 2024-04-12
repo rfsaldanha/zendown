@@ -15,10 +15,9 @@
 #' file.exists(file_path)
 #'
 #' @export
-delete_mirror <- function(deposit_id){
+delete_mirror <- function(deposit_id, cache_type = NULL){
   # Cache path
-  cache_dir <- rappdirs::user_cache_dir(appname = "zendown")
-  cache_path <- fs::path(cache_dir, deposit_id)
+  cache_path <- fs::path(cache_dir(cache_type), deposit_id)
 
   if(fs::dir_exists(path = cache_path)){
     fs::dir_delete(path = cache_path)
@@ -40,11 +39,11 @@ delete_mirror <- function(deposit_id){
 #' file.exists(file_path)
 #'
 #' @export
-delete_all_mirrors <- function(){
+delete_all_mirrors <- function(cache_type = NULL){
   # Cache path
-  cache_dir <- rappdirs::user_cache_dir(appname = "zendown")
+  cache_path <- cache_dir(cache_type)
 
-  if(fs::dir_exists(path = cache_dir)){
-    fs::dir_delete(path = cache_dir)
+  if(fs::dir_exists(path = cache_path)){
+    fs::dir_delete(path = cache_path)
   }
 }
