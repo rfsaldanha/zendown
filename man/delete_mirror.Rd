@@ -13,5 +13,11 @@ delete_mirror(deposit_id)
 No return value. The function deletes mirrored on the system.
 }
 \description{
-This will delete all mirrored files stored locally.
+This function will delete all mirrored files stored locally.
+}
+\examples{
+\dontshow{if (curl::has_internet() & RCurl::url.exists("https://zenodo.org/", timeout.ms = 5000)) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+zen_file(10959197, "iris.rds")
+delete_mirror(10959197)
+\dontshow{\}) # examplesIf}
 }

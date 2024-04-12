@@ -1,10 +1,14 @@
 #' Delete a deposit mirror
 #'
-#' This will delete all mirrored files stored locally.
+#' This function will delete all mirrored files stored locally.
 #'
 #' @param deposit_id numeric. The Zenodo deposit id.
 #'
 #' @returns No return value. The function deletes mirrored on the system.
+#'
+#' @examplesIf curl::has_internet() & RCurl::url.exists("https://zenodo.org/", timeout.ms = 5000)
+#' zen_file(10959197, "iris.rds")
+#' delete_mirror(10959197)
 #'
 #' @export
 delete_mirror <- function(deposit_id){
@@ -22,6 +26,10 @@ delete_mirror <- function(deposit_id){
 #' This will delete all deposit mirrors stored locally.
 #'
 #' @returns No return value. The function deletes all deposits mirrored on the system.
+#'
+#' @examplesIf curl::has_internet() & RCurl::url.exists("https://zenodo.org/", timeout.ms = 5000)
+#' zen_file(10959197, "iris.rds")
+#' delete_all_mirrors()
 #'
 #' @export
 delete_all_mirrors <- function(){
