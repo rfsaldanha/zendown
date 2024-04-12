@@ -20,6 +20,7 @@ This function will delete all mirrored files stored locally.
 # https://zenodo.org/records/10959197
 file_path <- zen_file(10959197, "iris.rds")
 print(file_path)
+file.exists(file_path)
 delete_mirror(10959197)
 file.exists(file_path)
 \dontshow{\}) # examplesIf}
