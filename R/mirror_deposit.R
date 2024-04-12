@@ -11,9 +11,9 @@
 #'
 #' @examplesIf curl::has_internet() & RCurl::url.exists("https://zenodo.org/records/10959197", timeout.ms = 5000)
 #' # https://zenodo.org/records/10959197
-#' mirror_deposit(deposit_id = 10959197)
-#' file.exists(file.path(temp_dir, "iris.rds"))
-#' file.exists(file.path(temp_dir, "mtcars.rds"))
+#' mirror_path <- mirror_deposit(deposit_id = 10959197)
+#' file.exists(file.path(mirror_path, "iris.rds"))
+#' file.exists(file.path(mirror_path, "mtcars.rds"))
 #'
 #' @export
 #'
