@@ -7,3 +7,15 @@ navbar:
   structure:
     right: [github]
 
+reference:
+- title: "Main function"
+  contents:
+  - zen_file
+- title: "Mirror functions"
+  contents:
+  - mirror_deposit
+  - delete_mirror
+- title: "Deposit functions"
+  contents:
+  - list_deposit
+  - download_deposit
