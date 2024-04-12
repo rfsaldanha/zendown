@@ -8,6 +8,8 @@ delete_mirror(deposit_id, cache_type = NULL)
 }
 \arguments{
 \item{deposit_id}{numeric. The Zenodo deposit id.}
+
+\item{cache_type}{character. If \code{NULL}, the package will check the enviroment variable \code{zendown_cache_type} setting and use it. If \code{zendown_cache_type} is not set, the function will default to a temporary cache. The argument can be set to \code{temporary} to store the cache in a temporary system folder and \code{persistent} to store the cache in a persistent system folder.}
 }
 \value{
 No return value. The function deletes mirrored on the system.
