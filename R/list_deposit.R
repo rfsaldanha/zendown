@@ -13,10 +13,11 @@ list_deposit <- function(deposit_id){
   # Assertions
   checkmate::assert_number(x = deposit_id)
 
-  # Check internet and Zenodo
-  if(check_internet() == FALSE)(
+  # Check internet and Zenodo access
+  if(check_internet() == FALSE){
+    cli::cli_inform("It appears that your local Internet connection is not working.")
     return(NULL)
-  )
+  }
 
   # Base url
   base_url <- glue::glue("https://zenodo.org/api/deposit/depositions/{deposit_id}/files")

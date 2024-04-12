@@ -41,7 +41,7 @@ mirror_deposit <- function(deposit_id, file_name = NULL, cache_type = NULL, clea
   if(clear_cache & fs::dir_exists(cache_path)){
     if(is.null(file_name)){
       fs::dir_delete(cache_path)
-    } else if(!is.null(file_name)){
+    } else if(!is.null(file_name) & fs::file_exists(fs::path(cache_path,file_name))){
       fs::file_delete(fs::path(cache_path,file_name))
     }
   }
@@ -53,11 +53,22 @@ mirror_deposit <- function(deposit_id, file_name = NULL, cache_type = NULL, clea
 
   # Download deposit files to mirror if not present
   if(!is.null(file_name)){ # Single file
+    # File path
     file_path <- fs::path(cache_path, file_name)
     if(!fs::file_exists(file_path)){
+      # Check internet and Zenodo access
+      if(check_internet() == FALSE){
+        cli::cli_alert("It appears that your local Internet connection is not working. No file was downloaded.")
+        return(NULL)
+      }
+
+      # Get file list
       deposit_file_list <- list_deposit(deposit_id = deposit_id)
+
+      # Assert if the file exists
       checkmate::assert_choice(x = file_name, null.ok = TRUE, choices = deposit_file_list$filename)
 
+      # Download file
       download_deposit(
         list_deposit = deposit_file_list,
         file_name = file_name,
@@ -66,12 +77,23 @@ mirror_deposit <- function(deposit_id, file_name = NULL, cache_type = NULL, clea
       )
     }
   } else if(is.null(file_name)){ # All deposit
+    # Check internet and Zenodo access
+    if(check_internet() == FALSE){
+      cli::cli_alert("It appears that your local Internet connection is not working. No file was downloaded.")
+      return(NULL)
+    }
+
+    # Get file list
     deposit_file_list <- list_deposit(deposit_id = deposit_id)
 
     for(f in deposit_file_list$filename){
+      # Assert if the file exists
       checkmate::assert_choice(x = f, null.ok = TRUE, choices = deposit_file_list$filename)
+
+      # File path
       file_path <- fs::path(cache_path, f)
 
+      # If the file is not cached, download it
       if(!fs::file_exists(file_path)){
         download_deposit(
           list_deposit = deposit_file_list,

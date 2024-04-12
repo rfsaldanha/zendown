@@ -21,14 +21,13 @@ download_deposit <- function(list_deposit, file_name = NULL, dest, quiet = FALSE
   checkmate::assert_choice(x = file_name, null.ok = TRUE, choices = list_deposit$filename)
   checkmate::assert_logical(x = quiet)
 
-  # Check internet and Zenodo
-  if(check_internet() == FALSE)(
+  # Check internet and Zenodo access
+  if(check_internet() == FALSE){
+    cli::cli_alert("It appears that your local Internet connection is not working.")
     return(NULL)
-  )
+  }
 
-  # Check Zenodo
-  if(!RCurl::url.exists("https://zenodo.org/", timeout.ms = 5000)) cli::cli_abort("It appears that Zenodo is down.")
-
+  # All files from deposit
   if(is.null(file_name)){
     for(f in 1:nrow(list_deposit)){
       url <- list_deposit[[f,"download"]]
@@ -43,7 +42,7 @@ download_deposit <- function(list_deposit, file_name = NULL, dest, quiet = FALSE
         cli::cli_abort("The file {list_deposit[[f,'filename']]} checksum is different from source. Try download again.")
       }
     }
-  } else {
+  } else { # A specific file
     file_row <- list_deposit[which(list_deposit$filename==file_name),]
     url <- file_row$download
 
