@@ -7,6 +7,7 @@
 #' @returns No return value. The function deletes mirrored on the system.
 #'
 #' @examplesIf curl::has_internet() & RCurl::url.exists("https://zenodo.org/records/10959197", timeout.ms = 5000)
+#' # https://zenodo.org/records/10959197
 #' zen_file(10959197, "iris.rds")
 #' delete_mirror(10959197)
 #'
@@ -28,6 +29,7 @@ delete_mirror <- function(deposit_id){
 #' @returns No return value. The function deletes all deposits mirrored on the system.
 #'
 #' @examplesIf curl::has_internet() & RCurl::url.exists("https://zenodo.org/records/10959197", timeout.ms = 5000)
+#' # https://zenodo.org/records/10959197
 #' zen_file(10959197, "iris.rds")
 #' delete_all_mirrors()
 #'

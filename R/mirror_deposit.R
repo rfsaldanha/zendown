@@ -8,6 +8,11 @@
 #' @param quiet logical. Show download info and progress bar.
 #'
 #' @return a string with the mirror path.
+#'
+#' @examplesIf curl::has_internet() & RCurl::url.exists("https://zenodo.org/records/10959197", timeout.ms = 5000)
+#' # https://zenodo.org/records/10959197
+#' mirror_deposit(deposit_id = 10959197)
+#'
 #' @export
 #'
 mirror_deposit <- function(deposit_id, file_name = NULL, clear_cache = FALSE, quiet = FALSE){

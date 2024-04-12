@@ -3,6 +3,11 @@
 #' @param deposit_id numeric. The Zenodo deposit id.
 #'
 #' @return a tibble.
+#'
+#' @examplesIf curl::has_internet() & RCurl::url.exists("https://zenodo.org/records/10959197", timeout.ms = 5000)
+#' # https://zenodo.org/records/10959197
+#' list_deposit(deposit_id = 10959197)
+#'
 #' @export
 list_deposit <- function(deposit_id){
   # Assertions

@@ -15,3 +15,9 @@ a tibble.
 \description{
 Get a list of files available at a Zenodo deposit
 }
+\examples{
+\dontshow{if (curl::has_internet() & RCurl::url.exists("https://zenodo.org/records/10959197", timeout.ms = 5000)) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+# https://zenodo.org/records/10959197
+list_deposit(deposit_id = 10959197)
+\dontshow{\}) # examplesIf}
+}

@@ -21,3 +21,9 @@ a string with the mirror file path.
 \description{
 Get the local path to a Zenodo deposit file. It not cached in a mirror yet, it will download the file to a deposit mirror cache locally.
 }
+\examples{
+\dontshow{if (curl::has_internet() & RCurl::url.exists("https://zenodo.org/records/10959197", timeout.ms = 5000)) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+# https://zenodo.org/records/10959197
+zen_file(10959197, "iris.rds")
+\dontshow{\}) # examplesIf}
+}

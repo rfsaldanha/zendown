@@ -26,3 +26,9 @@ a string with the mirror path.
 \description{
 Mirror an entire Zenodo deposit or a specific file locally. The mirror is a folder with the deposit files created at the cache folder of the operating system.
 }
+\examples{
+\dontshow{if (curl::has_internet() & RCurl::url.exists("https://zenodo.org/records/10959197", timeout.ms = 5000)) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+# https://zenodo.org/records/10959197
+mirror_deposit(deposit_id = 10959197)
+\dontshow{\}) # examplesIf}
+}
