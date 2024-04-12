@@ -24,30 +24,6 @@ test_that("delete_mirror works with persistent cache", {
   expect_false(dir.exists(mirror_path))
 })
 
-test_that("delete_all_mirrors works with temporary cache", {
-  skip_if(!(curl::has_internet() & RCurl::url.exists("https://zenodo.org/records/10959197", timeout.ms = 5000)))
-
-  res <- zen_file(deposit_id = 10959197, file_name = "iris.rds", cache_type = "temporary", clear_cache = TRUE, quiet = TRUE)
-
-  delete_all_mirrors(cache_type = "temporary")
-
-  cache_path <- cache_dir("temporary")
-
-  expect_false(dir.exists(cache_path))
-})
-
-test_that("delete_all_mirrors works with persistent cache", {
-  skip_if(!(curl::has_internet() & RCurl::url.exists("https://zenodo.org/records/10959197", timeout.ms = 5000)))
-
-  res <- zen_file(deposit_id = 10959197, file_name = "iris.rds", cache_type = "persistent", clear_cache = TRUE, quiet = TRUE)
-
-  delete_all_mirrors(cache_type = "temporary")
-
-  cache_path <- cache_dir("temporary")
-
-  expect_false(dir.exists(cache_path))
-})
-
 test_that("file_list works", {
   skip_if(!(curl::has_internet() & RCurl::url.exists("https://zenodo.org/records/10959197", timeout.ms = 5000)))
 

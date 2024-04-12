@@ -81,7 +81,7 @@ zendown_cache_type = "persistent"
 
 Save the file and restart R. On RStudio: Session -> Restart R
 
-After this, all cache will be persistent. The package provide functions to delete a specific Zenodo deposit cache `?delete_mirror` and to delete all cache `?delete_all_mirrors`.
+After this, all cache will be persistent. The package provides a functions to delete a specific Zenodo deposit cache `?delete_mirror`.
 
 ## More examples
 
