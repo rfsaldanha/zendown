@@ -11,6 +11,8 @@
 #' res <- list_deposit(deposit_id = 10959197)
 #' temp_dir <- tempdir()
 #' download_deposit(list_deposit = res, dest = temp_dir, quiet = FALSE)
+#' file.exists(file.path(temp_dir, "iris.rds"))
+#' file.exists(file.path(temp_dir, "mtcars.rds"))
 #'
 #' @export
 download_deposit <- function(list_deposit, file_name = NULL, dest, quiet = FALSE){

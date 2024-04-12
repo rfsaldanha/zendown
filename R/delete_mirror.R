@@ -8,8 +8,10 @@
 #'
 #' @examplesIf curl::has_internet() & RCurl::url.exists("https://zenodo.org/records/10959197", timeout.ms = 5000)
 #' # https://zenodo.org/records/10959197
-#' zen_file(10959197, "iris.rds")
+#' file_path <- zen_file(10959197, "iris.rds")
+#' print(file_path)
 #' delete_mirror(10959197)
+#' file.exists(file_path)
 #'
 #' @export
 delete_mirror <- function(deposit_id){
@@ -30,8 +32,10 @@ delete_mirror <- function(deposit_id){
 #'
 #' @examplesIf curl::has_internet() & RCurl::url.exists("https://zenodo.org/records/10959197", timeout.ms = 5000)
 #' # https://zenodo.org/records/10959197
-#' zen_file(10959197, "iris.rds")
-#' delete_all_mirrors()
+#' file_path <- zen_file(10959197, "iris.rds")
+#' print(file_path)
+#' delete_all_mirrors(10959197)
+#' file.exists(file_path)
 #'
 #' @export
 delete_all_mirrors <- function(){

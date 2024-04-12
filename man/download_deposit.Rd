@@ -26,5 +26,7 @@ Download files from a Zenodo deposit
 res <- list_deposit(deposit_id = 10959197)
 temp_dir <- tempdir()
 download_deposit(list_deposit = res, dest = temp_dir, quiet = FALSE)
+file.exists(file.path(temp_dir, "iris.rds"))
+file.exists(file.path(temp_dir, "mtcars.rds"))
 \dontshow{\}) # examplesIf}
 }
