@@ -54,6 +54,7 @@
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">mirror_deposit</span><span class="op">(</span></span>
 <span>  <span class="va">deposit_id</span>,</span>
 <span>  file_name <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  cache_type <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  clear_cache <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  quiet <span class="op">=</span> <span class="cn">FALSE</span></span>
 <span><span class="op">)</span></span></code></pre></div>
@@ -69,6 +70,10 @@
 <dd><p>character. If <code>NULL</code>, all files from the file list. If a file name is specified, only this file will be downloaded.</p></dd>
 
 
+<dt>cache_type</dt>
+<dd><p>character. If <code>NULL</code>, the package will check the enviroment variable <code>zendown_cache_type</code> setting and use it. If <code>zendown_cache_type</code> is not set, the function will default to a temporary cache. The argument can be set to <code>temporary</code> to store the cache in a temporary system folder and <code>persistent</code> to store the cache in a persistent system folder.</p></dd>
+
+
 <dt>clear_cache</dt>
 <dd><p>logical. If the mirror already exists, clear its content.</p></dd>
 
@@ -82,6 +87,16 @@
     
 
 <p>a string with the mirror path.</p>
+    </div>
+    <div class="section level2">
+    <h2 id="cache-type">Cache type<a class="anchor" aria-label="anchor" href="#cache-type"></a></h2>
+    
+
+
+<p>The Zenodo mirror will be stored locally on a system folder. This folder can be temporary, cleared when the R session is ended, or persistent across sections and reboots.</p>
+<p>If the <code>cache_type</code> argument is <code>NULL</code> the package will check the environment variable <code>zendown_cache_type</code>. If set, the package will use its value. If not set, a temporary cache folder will be used as default.</p>
+<p>You can set the environment variable with <code>Sys.setenv("zendown_cache_type" = "persistent")</code> or <code>Sys.setenv("zendown_cache_type" = "temporary")</code>. To unset this variable, use <code>Sys.unsetenv("zendown_cache_type")</code>.</p>
+<p>The <code>cache_type</code> argument can also be set directly as <code>temporary</code> or <code>persistent</code>.</p>
     </div>
 
     <div class="section level2">

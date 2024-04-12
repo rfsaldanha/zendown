@@ -51,13 +51,17 @@
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">delete_mirror</span><span class="op">(</span><span class="va">deposit_id</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">delete_mirror</span><span class="op">(</span><span class="va">deposit_id</span>, cache_type <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
     <dl><dt>deposit_id</dt>
 <dd><p>numeric. The Zenodo deposit id.</p></dd>
+
+
+<dt>cache_type</dt>
+<dd><p>character. If <code>NULL</code>, the package will check the enviroment variable <code>zendown_cache_type</code> setting and use it. If <code>zendown_cache_type</code> is not set, the function will default to a temporary cache. The argument can be set to <code>temporary</code> to store the cache in a temporary system folder and <code>persistent</code> to store the cache in a persistent system folder.</p></dd>
 
 </dl></div>
     <div class="section level2">
@@ -72,7 +76,7 @@
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># https://zenodo.org/records/10959197</span></span></span>
 <span class="r-in"><span><span class="va">file_path</span> <span class="op">&lt;-</span> <span class="fu"><a href="zen_file.html">zen_file</a></span><span class="op">(</span><span class="fl">10959197</span>, <span class="st">"iris.rds"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">file_path</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ~/.cache/zendown/10959197/iris.rds</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> /tmp/RtmpnpuFmF/10959197/iris.rds</span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/files.html" class="external-link">file.exists</a></span><span class="op">(</span><span class="va">file_path</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] TRUE</span>
 <span class="r-in"><span><span class="fu">delete_mirror</span><span class="op">(</span><span class="fl">10959197</span><span class="op">)</span></span></span>
