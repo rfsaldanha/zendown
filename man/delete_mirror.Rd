@@ -9,6 +9,9 @@ delete_mirror(deposit_id)
 \arguments{
 \item{deposit_id}{numeric. The Zenodo deposit id.}
 }
+\value{
+No return value. The function deletes mirrored on the system.
+}
 \description{
 This will delete all mirrored files stored locally.
 }

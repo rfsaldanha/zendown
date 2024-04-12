@@ -4,6 +4,8 @@
 #'
 #' @param deposit_id numeric. The Zenodo deposit id.
 #'
+#' @returns No return value. The function deletes mirrored on the system.
+#'
 #' @export
 delete_mirror <- function(deposit_id){
   # Cache path
@@ -15,9 +17,11 @@ delete_mirror <- function(deposit_id){
   }
 }
 
-#' Delete all mirrors
+#' Delete all deposit mirrors
 #'
-#' This will delete all mirrors stored locally.
+#' This will delete all deposit mirrors stored locally.
+#'
+#' @returns No return value. The function deletes all deposits mirrored on the system.
 #'
 #' @export
 delete_all_mirrors <- function(){

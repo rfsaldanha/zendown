@@ -2,10 +2,13 @@
 % Please edit documentation in R/delete_mirror.R
 \name{delete_all_mirrors}
 \alias{delete_all_mirrors}
-\title{Delete all mirrors}
+\title{Delete all deposit mirrors}
 \usage{
 delete_all_mirrors()
 }
+\value{
+No return value. The function deletes all deposits mirrored on the system.
+}
 \description{
-This will delete all mirrors stored locally.
+This will delete all deposit mirrors stored locally.
 }

@@ -15,6 +15,9 @@ download_deposit(list_deposit, file_name = NULL, dest, quiet = FALSE)
 
 \item{quiet}{logical. Show download info and progress bar.}
 }
+\value{
+No return value. The function downloads files to the specified destination.
+}
 \description{
 Download files from a Zenodo deposit
 }

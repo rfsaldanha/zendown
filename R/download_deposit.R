@@ -5,6 +5,8 @@
 #' @param dest character. Destination folder.
 #' @param quiet logical. Show download info and progress bar.
 #'
+#' @returns No return value. The function downloads files to the specified destination.
+#'
 #' @export
 download_deposit <- function(list_deposit, file_name = NULL, dest, quiet = FALSE){
   # Assertions
