@@ -88,4 +88,8 @@ test_that("zen_file works", {
   expect_true(file.exists(res))
 })
 
+test_that("list_deposit without internet", {
+  local_mocked_bindings(check_internet = function(...) FALSE)
 
+  expect_null(list_deposit(10959197))
+})

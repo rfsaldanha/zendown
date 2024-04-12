@@ -22,13 +22,9 @@ download_deposit <- function(list_deposit, file_name = NULL, dest, quiet = FALSE
   checkmate::assert_logical(x = quiet)
 
   # Check internet and Zenodo
-  if(!any(c(
-    curl::has_internet(),
-    RCurl::url.exists("https://zenodo.org/", timeout.ms = 5000)
-  ))){
-    cli::cli_alert("It appears that your local Internet connection is not working.")
+  if(check_internet() == FALSE)(
     return(NULL)
-  }
+  )
 
   # Check Zenodo
   if(!RCurl::url.exists("https://zenodo.org/", timeout.ms = 5000)) cli::cli_abort("It appears that Zenodo is down.")
