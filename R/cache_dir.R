@@ -9,14 +9,14 @@ cache_dir <- function(cache_type = NULL){
     } else if(res == "temporary"){
       c_dir <- tempdir()
     } else if(res == "persistent"){
-      c_dir <- rappdirs::user_cache_dir(appname = "zendown")
+      c_dir <- tools::R_user_dir("opendenguedata", which = 'data')
     } else {
       c_dir <- tempdir()
     }
   } else if(cache_type == "temporary"){
     c_dir <- tempdir()
   } else if(cache_type == "persistent"){
-    c_dir <- rappdirs::user_cache_dir(appname = "zendown")
+    c_dir <- tools::R_user_dir("opendenguedata", which = 'data')
   }
 
   return(c_dir)
