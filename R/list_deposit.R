@@ -4,7 +4,7 @@
 #'
 #' @return a tibble.
 #'
-#' @examplesIf curl::has_internet() & RCurl::url.exists("https://zenodo.org/records/10959197", timeout.ms = 5000)
+#' @examplesIf identical(tolower(Sys.getenv("NOT_CRAN")), "true")
 #' # https://zenodo.org/records/10959197
 #' list_deposit(deposit_id = 10959197)
 #'

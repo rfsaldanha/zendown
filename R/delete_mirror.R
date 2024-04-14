@@ -7,7 +7,7 @@
 #'
 #' @returns No return value. The function deletes mirrored on the system.
 #'
-#' @examplesIf curl::has_internet() & RCurl::url.exists("https://zenodo.org/records/10959197", timeout.ms = 5000)
+#' @examplesIf identical(tolower(Sys.getenv("NOT_CRAN")), "true")
 #' # https://zenodo.org/records/10959197
 #' file_path <- zen_file(10959197, "iris.rds")
 #' print(file_path)

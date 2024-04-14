@@ -22,7 +22,7 @@ No return value. The function downloads files to the specified destination.
 Download files from a Zenodo deposit
 }
 \examples{
-\dontshow{if (curl::has_internet() & RCurl::url.exists("https://zenodo.org/records/10959197", timeout.ms = 5000)) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (identical(tolower(Sys.getenv("NOT_CRAN")), "true")) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 res <- list_deposit(deposit_id = 10959197)
 temp_dir <- tempdir()
 download_deposit(list_deposit = res, dest = temp_dir, quiet = FALSE)

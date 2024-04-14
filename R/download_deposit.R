@@ -7,7 +7,7 @@
 #'
 #' @returns No return value. The function downloads files to the specified destination.
 #'
-#' @examplesIf curl::has_internet() & RCurl::url.exists("https://zenodo.org/records/10959197", timeout.ms = 5000)
+#' @examplesIf identical(tolower(Sys.getenv("NOT_CRAN")), "true")
 #' res <- list_deposit(deposit_id = 10959197)
 #' temp_dir <- tempdir()
 #' download_deposit(list_deposit = res, dest = temp_dir, quiet = FALSE)

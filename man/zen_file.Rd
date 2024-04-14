@@ -42,7 +42,7 @@ The \code{cache_type} argument can also be set directly as \code{temporary} or \
 }
 
 \examples{
-\dontshow{if (curl::has_internet() & RCurl::url.exists("https://zenodo.org/records/10959197", timeout.ms = 5000)) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (identical(tolower(Sys.getenv("NOT_CRAN")), "true")) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 # https://zenodo.org/records/10959197
 zen_file_path <- zen_file(10959197, "iris.rds")
 file.exists(zen_file_path)

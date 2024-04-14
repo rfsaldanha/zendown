@@ -20,7 +20,7 @@
 #'
 #' @return a string with the mirror path.
 #'
-#' @examplesIf curl::has_internet() & RCurl::url.exists("https://zenodo.org/records/10959197", timeout.ms = 5000)
+#' @examplesIf identical(tolower(Sys.getenv("NOT_CRAN")), "true")
 #' # https://zenodo.org/records/10959197
 #' mirror_path <- mirror_deposit(deposit_id = 10959197)
 #' file.exists(file.path(mirror_path, "iris.rds"))
