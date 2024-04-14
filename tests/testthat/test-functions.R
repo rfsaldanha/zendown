@@ -1,5 +1,5 @@
 test_that("delete_mirror works with temporary cache", {
-  skip_if(!(curl::has_internet() & RCurl::url.exists("https://zenodo.org/records/10959197", timeout.ms = 5000)))
+  testthat::skip_on_cran()
 
   res <- zen_file(deposit_id = 10959197, file_name = "iris.rds", cache_type = "temporary", clear_cache = TRUE, quiet = TRUE)
 
@@ -12,7 +12,7 @@ test_that("delete_mirror works with temporary cache", {
 })
 
 test_that("delete_mirror works with persistent cache", {
-  skip_if(!(curl::has_internet() & RCurl::url.exists("https://zenodo.org/records/10959197", timeout.ms = 5000)))
+  testthat::skip_on_cran()
 
   res <- zen_file(deposit_id = 10959197, file_name = "iris.rds", cache_type = "persistent", clear_cache = TRUE, quiet = TRUE)
 
@@ -25,7 +25,7 @@ test_that("delete_mirror works with persistent cache", {
 })
 
 test_that("file_list works", {
-  skip_if(!(curl::has_internet() & RCurl::url.exists("https://zenodo.org/records/10959197", timeout.ms = 5000)))
+  testthat::skip_on_cran()
 
   res <- list_deposit(deposit_id = 10959197)
 
@@ -33,7 +33,7 @@ test_that("file_list works", {
 })
 
 test_that("download_deposit works with file list", {
-  skip_if(!(curl::has_internet() & RCurl::url.exists("https://zenodo.org/records/10959197", timeout.ms = 5000)))
+  testthat::skip_on_cran()
 
   res <- list_deposit(deposit_id = 10959197)
 
@@ -45,7 +45,7 @@ test_that("download_deposit works with file list", {
 })
 
 test_that("download_deposit works with single file", {
-  skip_if(!(curl::has_internet() & RCurl::url.exists("https://zenodo.org/records/10959197", timeout.ms = 5000)))
+  testthat::skip_on_cran()
 
   res <- list_deposit(deposit_id = 10959197)
 
@@ -57,7 +57,7 @@ test_that("download_deposit works with single file", {
 })
 
 test_that("mirror_deposit works with temporary cache", {
-  skip_if(!(curl::has_internet() & RCurl::url.exists("https://zenodo.org/records/10959197", timeout.ms = 5000)))
+  testthat::skip_on_cran()
 
   res <- mirror_deposit(deposit_id = 10959197, cache_type = "temporary", clear_cache = TRUE, quiet = TRUE)
 
@@ -65,7 +65,7 @@ test_that("mirror_deposit works with temporary cache", {
 })
 
 test_that("mirror_deposit works with persistent cache", {
-  skip_if(!(curl::has_internet() & RCurl::url.exists("https://zenodo.org/records/10959197", timeout.ms = 5000)))
+  testthat::skip_on_cran()
 
   res <- mirror_deposit(deposit_id = 10959197, cache_type = "persistent", clear_cache = TRUE, quiet = TRUE)
 
@@ -73,7 +73,7 @@ test_that("mirror_deposit works with persistent cache", {
 })
 
 test_that("mirror_deposit works with single file", {
-  skip_if(!(curl::has_internet() & RCurl::url.exists("https://zenodo.org/records/10959197", timeout.ms = 5000)))
+  testthat::skip_on_cran()
 
   res <- mirror_deposit(deposit_id = 10959197, file_name = "iris.rds", clear_cache = TRUE, quiet = TRUE)
 
@@ -81,7 +81,7 @@ test_that("mirror_deposit works with single file", {
 })
 
 test_that("zen_file works", {
-  skip_if(!(curl::has_internet() & RCurl::url.exists("https://zenodo.org/records/10959197", timeout.ms = 5000)))
+  testthat::skip_on_cran()
 
   res <- zen_file(deposit_id = 10959197, file_name = "iris.rds", clear_cache = TRUE, quiet = TRUE)
 
@@ -89,6 +89,8 @@ test_that("zen_file works", {
 })
 
 test_that("list_deposit without internet", {
+  testthat::skip_on_cran()
+
   local_mocked_bindings(check_internet = function(...) FALSE)
 
   suppressMessages({
