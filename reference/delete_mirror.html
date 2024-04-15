@@ -16,7 +16,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">zendown</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.2</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -26,6 +26,12 @@
     <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto"><li class="active nav-item">
   <a class="nav-link" href="../reference/index.html">Reference</a>
+</li>
+<li class="nav-item dropdown">
+  <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
+  <div class="dropdown-menu" aria-labelledby="dropdown-articles">
+    <a class="dropdown-item" href="../articles/cache_options.html">Cache options and management</a>
+  </div>
 </li>
 <li class="nav-item">
   <a class="nav-link" href="../news/index.html">Changelog</a>
@@ -51,7 +57,7 @@
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">delete_mirror</span><span class="op">(</span><span class="va">deposit_id</span>, cache_type <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">delete_mirror</span><span class="op">(</span><span class="va">deposit_id</span>, cache_type <span class="op">=</span> <span class="cn">NULL</span>, cache_dir <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -61,7 +67,11 @@
 
 
 <dt>cache_type</dt>
-<dd><p>character. If <code>NULL</code>, the package will check the enviroment variable <code>zendown_cache_type</code> setting and use it. If <code>zendown_cache_type</code> is not set, the function will default to a temporary cache. The argument can be set to <code>temporary</code> to store the cache in a temporary system folder and <code>persistent</code> to store the cache in a persistent system folder.</p></dd>
+<dd><p>character. Use <code>temporary</code> to a session temporary folder, <code>persistent</code> for a persistent cache folder or <code>NULL</code> to use the environment default. Check the section Cache Type for more details.</p></dd>
+
+
+<dt>cache_dir</dt>
+<dd><p>character. User specified cache directory for persistent cache type.</p></dd>
 
 </dl></div>
     <div class="section level2">
@@ -76,10 +86,11 @@
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># https://zenodo.org/records/10959197</span></span></span>
 <span class="r-in"><span><span class="va">file_path</span> <span class="op">&lt;-</span> <span class="fu"><a href="zen_file.html">zen_file</a></span><span class="op">(</span><span class="fl">10959197</span>, <span class="st">"iris.rds"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">file_path</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> /tmp/RtmpBwj0EK/10959197/iris.rds</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> /tmp/Rtmpc7LSQM/zendown/10959197/iris.rds</span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/files.html" class="external-link">file.exists</a></span><span class="op">(</span><span class="va">file_path</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] TRUE</span>
 <span class="r-in"><span><span class="fu">delete_mirror</span><span class="op">(</span><span class="fl">10959197</span><span class="op">)</span></span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> The cache of deposit 10959197 was deleted</span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/files.html" class="external-link">file.exists</a></span><span class="op">(</span><span class="va">file_path</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] FALSE</span>
 </code></pre></div>

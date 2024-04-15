@@ -16,7 +16,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">zendown</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.2</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -26,6 +26,12 @@
     <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto"><li class="active nav-item">
   <a class="nav-link" href="../reference/index.html">Reference</a>
+</li>
+<li class="nav-item dropdown">
+  <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
+  <div class="dropdown-menu" aria-labelledby="dropdown-articles">
+    <a class="dropdown-item" href="../articles/cache_options.html">Cache options and management</a>
+  </div>
 </li>
 <li class="nav-item">
   <a class="nav-link" href="../news/index.html">Changelog</a>
@@ -55,6 +61,7 @@
 <span>  <span class="va">deposit_id</span>,</span>
 <span>  <span class="va">file_name</span>,</span>
 <span>  cache_type <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  cache_dir <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  clear_cache <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  quiet <span class="op">=</span> <span class="cn">FALSE</span></span>
 <span><span class="op">)</span></span></code></pre></div>
@@ -71,7 +78,11 @@
 
 
 <dt>cache_type</dt>
-<dd><p>character. If <code>NULL</code>, the package will check the enviroment variable <code>zendown_cache_type</code> setting and use it. If <code>zendown_cache_type</code> is not set, the function will default to a temporary cache. The argument can be set to <code>temporary</code> to store the cache in a temporary system folder and <code>persistent</code> to store the cache in a persistent system folder.</p></dd>
+<dd><p>character. Use <code>temporary</code> to a session temporary folder, <code>persistent</code> for a persistent cache folder or <code>NULL</code> to use the environment default. Check the section Cache Type for more details.</p></dd>
+
+
+<dt>cache_dir</dt>
+<dd><p>character. User specified cache directory for persistent cache type.</p></dd>
 
 
 <dt>clear_cache</dt>
@@ -93,16 +104,22 @@
     
 
 
-<p>The Zenodo mirror will be stored locally on a system folder. This folder can be temporary, cleared when the R session is ended, or persistent across sections and reboots.</p>
-<p>If the <code>cache_type</code> argument is <code>NULL</code> the package will check the environment variable <code>zendown_cache_type</code>. If set, the package will use its value. If not set, a temporary cache folder will be used as default.</p>
-<p>You can set the environment variable with <code>Sys.setenv("zendown_cache_type" = "persistent")</code> or <code>Sys.setenv("zendown_cache_type" = "temporary")</code>. To unset this variable, use <code>Sys.unsetenv("zendown_cache_type")</code>.</p>
-<p>The <code>cache_type</code> argument can also be set directly as <code>temporary</code> or <code>persistent</code>.</p>
+<p>The Zenodo mirror will be cached locally on a system folder. This folder can be temporary, being cleared when the R session is ended, or persistent across sections and reboots.</p>
+<p>If the <code>cache_type</code> argument is <code>NULL</code> (the default) the package will check first the environment variable <code>zendown_cache_type</code>. If set, the package will use its value. If not set, a temporary cache folder will be used as default.</p>
+<p>You can set an environment variable with <code>usethis::edit_r_environ()</code> and write as bellow for a persistent cache storage.</p>
+<p><code>zendown_cache_type = "persistent"</code></p>
+<p>After saving the file, remember to restart the session. With this setting, the cache will be persistent and stored at the directory given by <code>tools::R_user_dir("zendown", which = "cache")</code></p>
+<p>You may also use a different folder for persistent storage by setting the <code>zendown_cache_dir</code> environment variable. For example:</p>
+<p><code>zendown_cache_dir = C:\my_cache\</code></p>
+<p>If you set the <code>cache_type</code> argument directly as <code>temporary</code> or <code>persistent</code>, it will override the environment setting.</p>
     </div>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># https://zenodo.org/records/10959197</span></span></span>
 <span class="r-in"><span><span class="va">zen_file_path</span> <span class="op">&lt;-</span> <span class="fu">zen_file</span><span class="op">(</span><span class="fl">10959197</span>, <span class="st">"iris.rds"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">zen_file_path</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> /tmp/Rtmpc7LSQM/zendown/10959197/iris.rds</span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/files.html" class="external-link">file.exists</a></span><span class="op">(</span><span class="va">zen_file_path</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] TRUE</span>
 </code></pre></div>

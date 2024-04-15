@@ -10,6 +10,12 @@
     <loc>https://rfsaldanha.github.io/zendown/LICENSE.html</loc>
   </url>
   <url>
+    <loc>https://rfsaldanha.github.io/zendown/articles/cache_options.html</loc>
+  </url>
+  <url>
+    <loc>https://rfsaldanha.github.io/zendown/articles/index.html</loc>
+  </url>
+  <url>
     <loc>https://rfsaldanha.github.io/zendown/authors.html</loc>
   </url>
   <url>
@@ -17,6 +23,9 @@
   </url>
   <url>
     <loc>https://rfsaldanha.github.io/zendown/news/index.html</loc>
+  </url>
+  <url>
+    <loc>https://rfsaldanha.github.io/zendown/reference/cache_report.html</loc>
   </url>
   <url>
     <loc>https://rfsaldanha.github.io/zendown/reference/delete_mirror.html</loc>
