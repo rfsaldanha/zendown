@@ -4,12 +4,14 @@
 \alias{delete_mirror}
 \title{Delete a deposit mirror}
 \usage{
-delete_mirror(deposit_id, cache_type = NULL)
+delete_mirror(deposit_id, cache_type = NULL, cache_dir = NULL)
 }
 \arguments{
 \item{deposit_id}{numeric. The Zenodo deposit id.}
 
-\item{cache_type}{character. If \code{NULL}, the package will check the enviroment variable \code{zendown_cache_type} setting and use it. If \code{zendown_cache_type} is not set, the function will default to a temporary cache. The argument can be set to \code{temporary} to store the cache in a temporary system folder and \code{persistent} to store the cache in a persistent system folder.}
+\item{cache_type}{character. Use \code{temporary} to a session temporary folder, \code{persistent} for a persistent cache folder or \code{NULL} to use the environment default. Check the section Cache Type for more details.}
+
+\item{cache_dir}{character. User specified cache directory for persistent cache type.}
 }
 \value{
 No return value. The function deletes mirrored on the system.

@@ -7,6 +7,7 @@
 mirror_deposit(
   deposit_id,
   file_name = NULL,
+  cache_dir = NULL,
   cache_type = NULL,
   clear_cache = FALSE,
   quiet = FALSE
@@ -17,7 +18,9 @@ mirror_deposit(
 
 \item{file_name}{character. If \code{NULL}, all files from the file list. If a file name is specified, only this file will be downloaded.}
 
-\item{cache_type}{character. If \code{NULL}, the package will check the enviroment variable \code{zendown_cache_type} setting and use it. If \code{zendown_cache_type} is not set, the function will default to a temporary cache. The argument can be set to \code{temporary} to store the cache in a temporary system folder and \code{persistent} to store the cache in a persistent system folder.}
+\item{cache_dir}{character. User specified cache directory for persistent cache type.}
+
+\item{cache_type}{character. Use \code{temporary} to a session temporary folder, \code{persistent} for a persistent cache folder or \code{NULL} to use the environment default. Check the section Cache Type for more details.}
 
 \item{clear_cache}{logical. If the mirror already exists, clear its content.}
 
@@ -32,13 +35,21 @@ Mirror an entire Zenodo deposit or a specific file locally. The mirror is a fold
 \section{Cache type}{
 
 
-The Zenodo mirror will be stored locally on a system folder. This folder can be temporary, cleared when the R session is ended, or persistent across sections and reboots.
+The Zenodo mirror will be cached locally on a system folder. This folder can be temporary, being cleared when the R session is ended, or persistent across sections and reboots.
 
-If the \code{cache_type} argument is \code{NULL} the package will check the environment variable \code{zendown_cache_type}. If set, the package will use its value. If not set, a temporary cache folder will be used as default.
+If the \code{cache_type} argument is \code{NULL} (the default) the package will check first the environment variable \code{zendown_cache_type}. If set, the package will use its value. If not set, a temporary cache folder will be used as default.
 
-You can set the environment variable with \code{Sys.setenv("zendown_cache_type" = "persistent")} or \code{Sys.setenv("zendown_cache_type" = "temporary")}. To unset this variable, use \code{Sys.unsetenv("zendown_cache_type")}.
+You can set an environment variable with \code{usethis::edit_r_environ()} and write as bellow for a persistent cache storage.
 
-The \code{cache_type} argument can also be set directly as \code{temporary} or \code{persistent}.
+\code{zendown_cache_type = "persistent"}
+
+After saving the file, remember to restart the session. With this setting, the cache will be persistent and stored at the directory given by \code{tools::R_user_dir("zendown", which = "cache")}
+
+You may also use a different folder for persistent storage by setting the \code{zendown_cache_dir} environment variable. For example:
+
+\verb{zendown_cache_dir = C:\\my_cache\\}
+
+If you set the \code{cache_type} argument directly as \code{temporary} or \code{persistent}, it will override the environment setting.
 }
 
 \examples{
