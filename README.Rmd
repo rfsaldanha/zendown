@@ -67,11 +67,7 @@ The function will create a cache on your machine with all accessed files, avoidi
 
 By default, the cache is stored on a temporary folder that is cleaned when the R session is ended.
 
-To use a persistent cache, available across sessions and reboots, you can set an environment variable. First, edit your environment configuration file with. 
-
-```{r, eval=FALSE}
-usethis::edit_r_environ()
-```
+To use a persistent cache and other options, [check this article](https://rfsaldanha.github.io/zendown/articles/cache_options.html).
 
 And add the following line:
 
@@ -79,7 +75,7 @@ And add the following line:
 zendown_cache_type = "persistent"
 ```
 
-Save the file and restart R. On RStudio: Session -> Restart R
+Save the file and restart R. On RStudio: Session -\> Restart R
 
 After this, all cache will be persistent. The package provides a functions to delete a specific Zenodo deposit cache `?delete_mirror`.
 
@@ -107,7 +103,6 @@ zen_file(10889682, "total_precipitation_2023-09-01_2023-09-30_day_sum.nc") |>
   terra::rast() |>
   terra::plot(1)
 ```
-
 
 ## zen4R
 
