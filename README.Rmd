@@ -69,16 +69,6 @@ By default, the cache is stored on a temporary folder that is cleaned when the R
 
 To use a persistent cache and other options, [check this article](https://rfsaldanha.github.io/zendown/articles/cache_options.html).
 
-And add the following line:
-
-```{r}
-zendown_cache_type = "persistent"
-```
-
-Save the file and restart R. On RStudio: Session -\> Restart R
-
-After this, all cache will be persistent. The package provides a functions to delete a specific Zenodo deposit cache `?delete_mirror`.
-
 ## More examples
 
 ```{r}

@@ -67,17 +67,6 @@ when the R session is ended.
 To use a persistent cache and other options, [check this
 article](https://rfsaldanha.github.io/zendown/articles/cache_options.html).
 
-And add the following line:
-
-``` r
-zendown_cache_type = "persistent"
-```
-
-Save the file and restart R. On RStudio: Session -\> Restart R
-
-After this, all cache will be persistent. The package provides a
-functions to delete a specific Zenodo deposit cache `?delete_mirror`.
-
 ## More examples
 
 ``` r
@@ -123,7 +112,7 @@ zen_file(10889682, "total_precipitation_2023-09-01_2023-09-30_day_sum.nc") |>
   terra::plot(1)
 ```
 
-<img src="man/figures/README-unnamed-chunk-8-1.png" width="100%" />
+<img src="man/figures/README-unnamed-chunk-7-1.png" width="100%" />
 
 ## zen4R
 
