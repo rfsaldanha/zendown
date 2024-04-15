@@ -23,5 +23,8 @@ delete_mirror <- function(deposit_id, cache_type = NULL, cache_dir = NULL){
 
   if(fs::dir_exists(path = cache_path)){
     fs::dir_delete(path = cache_path)
+    cli::cli_alert_info("The cache of deposit {deposit_id} was deleted")
+  } else {
+    cli::cli_alert_warning("The cache of deposit {deposit_id} does not exist.")
   }
 }
