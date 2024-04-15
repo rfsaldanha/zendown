@@ -32,6 +32,7 @@
 #' @examplesIf identical(tolower(Sys.getenv("NOT_CRAN")), "true")
 #' # https://zenodo.org/records/10959197
 #' zen_file_path <- zen_file(10959197, "iris.rds")
+#' print(zen_file_path)
 #' file.exists(zen_file_path)
 #'
 #' @export
