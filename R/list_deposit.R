@@ -15,7 +15,7 @@ list_deposit <- function(deposit_id){
 
   # Check internet and Zenodo access
   if(check_internet() == FALSE){
-    cli::cli_inform("It appears that your local Internet connection is not working.")
+    cli::cli_alert_warning("It appears that your local Internet connection is not working or Zenodo is down. Try again later...")
     return(NULL)
   }
 
