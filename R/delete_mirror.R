@@ -3,7 +3,8 @@
 #' This function will delete all mirrored files stored locally.
 #'
 #' @param deposit_id numeric. The Zenodo deposit id.
-#' @param cache_type character. If `NULL`, the package will check the enviroment variable `zendown_cache_type` setting and use it. If `zendown_cache_type` is not set, the function will default to a temporary cache. The argument can be set to `temporary` to store the cache in a temporary system folder and `persistent` to store the cache in a persistent system folder.
+#' @param cache_type character. Use `temporary` to a session temporary folder, `persistent` for a persistent cache folder or `NULL` to use the environment default. Check the section Cache Type for more details.
+#' @param cache_dir character. User specified cache directory for persistent cache type.
 #'
 #' @returns No return value. The function deletes mirrored on the system.
 #'
@@ -16,9 +17,9 @@
 #' file.exists(file_path)
 #'
 #' @export
-delete_mirror <- function(deposit_id, cache_type = NULL){
+delete_mirror <- function(deposit_id, cache_type = NULL, cache_dir = NULL){
   # Cache path
-  cache_path <- fs::path(cache_dir(cache_type), deposit_id)
+  cache_path <- fs::path(cache_dir(cache_type,cache_dir), deposit_id)
 
   if(fs::dir_exists(path = cache_path)){
     fs::dir_delete(path = cache_path)
