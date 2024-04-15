@@ -1,5 +1,5 @@
 ---
-title: "Cache options"
+title: "Cache options and management"
 ---
 
 The `zendown` package functions provides some options to cache downloads from Zenodo, avoiding unnecessary downloads.
@@ -58,21 +58,10 @@ zendown_cache_dir = C:\my_dir\
 
 Substitute \`C:\my\_dir\` with you cache folder path. Save the file and restart. From now on, the cache files will be stored on this folder.
 
-```{r, include = FALSE}
-knitr::opts_chunk$set(
-  collapse = TRUE,
-  comment = "#>"
-)
-```
-
-```{r setup}
-library(zendown)
-```
-
 ## Cache management
 
 A large number of cached files can easily drawn the storage capacity, specially with persistent cache.
 
-Use the `cache_report()` function to track the number of Zenodo cached deposits, number of files and storage usage.
+Use the `cache_report()` function to track the number of Zenodo cached deposits, files and storage usage.
 
 Use the `delete_mirror()` function to delete a cached Zenodo deposit.
