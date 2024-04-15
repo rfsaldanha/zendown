@@ -1,0 +1,78 @@
+---
+title: "Cache options"
+---
+
+The `zendown` package functions provides some options to cache downloads from Zenodo, avoiding unnecessary downloads.
+
+## Temporary cache
+
+By default, all downloads are cached in a **temporary** folder linked to the R session. When the R session if finished (for example, restarting R or RStudio), the cache will be emptied.
+
+## Persistent cache
+
+A persistent cache can be useful, specially if you handle large files. With a persistent cache, the downloaded files will be available between R sessions.
+
+## Changing defaults
+
+You can opt to **always** use a persistent cache. For this, you need to create an R environment variable.
+
+First, edit you `.Renviron` file with `usethis::edit_r_environ()`
+
+At the end of the file, add this line:
+
+```         
+zendown_cache_type = "persistent"
+```
+
+Then, save the file and restart R. From now on, the cached files will be persistent in a system folder.
+
+## Where are cache files?
+
+### Temporary cache
+
+The temporary cache files are stored at the temporary files folder of your system. To retrieve this folder path, you can use the following command:
+
+```{r, eval=FALSE}
+fs::path_temp("zendown")
+```
+
+Remember that this folder is temporary and will be deleted when you close or restart the R session.
+
+### Persistent cache
+
+When you use a persistent option, the cache files are stored at the default package cache folder by default. To retrieve this folder path, you can use the following command:
+
+```{r, eval=FALSE}
+tools::R_user_dir("zendown", which = "cache")
+```
+
+## User defined persistent cache folder
+
+You also may also want to define a specific folder to be used as cache, like a external drive. For this, set another environment variable.
+
+Edit you `.Renviron` file with `usethis::edit_r_environ()` and add the following line at the end:
+
+```         
+zendown_cache_dir = C:\my_dir\
+```
+
+Substitute \`C:\my\_dir\` with you cache folder path. Save the file and restart. From now on, the cache files will be stored on this folder.
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(zendown)
+```
+
+## Cache management
+
+A large number of cached files can easily drawn the storage capacity, specially with persistent cache.
+
+Use the `cache_report()` function to track the number of Zenodo cached deposits, number of files and storage usage.
+
+Use the `delete_mirror()` function to delete a cached Zenodo deposit.
