@@ -14,6 +14,7 @@ reference:
 - title: "Mirror functions"
   contents:
   - mirror_deposit
+  - cache_report
   - delete_mirror
 - title: "Deposit functions"
   contents:
