@@ -35,12 +35,10 @@ appears on the Zenodo DOI.
 
     https://zenodo.org/records/10959197
 
-Deposition code: 10959197
+Deposition code: **10959197**
 
 With the deposit code and the desired file name, you can just access the
 file with the `zen_file` function.
-
-    #> ℹ The cache of deposit 10959197 was deleted
 
 ``` r
 my_iris <- zen_file(deposit_id = 10959197, file_name = "iris.rds") |>
@@ -112,7 +110,7 @@ zen_file(10889682, "total_precipitation_2023-09-01_2023-09-30_day_sum.nc") |>
   terra::plot(1)
 ```
 
-<img src="man/figures/README-unnamed-chunk-7-1.png" width="100%" />
+<img src="man/figures/README-unnamed-chunk-6-1.png" width="100%" />
 
 ## zen4R
 

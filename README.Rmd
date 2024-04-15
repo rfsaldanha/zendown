@@ -46,13 +46,9 @@ First, you need to find the Zenodo deposit code. It is the number that appears o
 https://zenodo.org/records/10959197
 ```
 
-Deposition code: 10959197
+Deposition code: **10959197**
 
 With the deposit code and the desired file name, you can just access the file with the `zen_file` function.
-
-```{r, echo=FALSE}
-delete_mirror(deposit_id = 10959197)
-```
 
 ```{r}
 my_iris <- zen_file(deposit_id = 10959197, file_name = "iris.rds") |>
