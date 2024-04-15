@@ -9,6 +9,7 @@
 #' @export
 #'
 #' @examplesIf identical(tolower(Sys.getenv("NOT_CRAN")), "true")
+#' mirror_deposit(deposit_id = 10959197)
 #' cache_report()
 #'
 cache_report <- function(cache_type = NULL, cache_dir = NULL){

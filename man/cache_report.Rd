@@ -12,13 +12,14 @@ cache_report(cache_type = NULL, cache_dir = NULL)
 \item{cache_dir}{character. User specified cache directory for persistent cache type.}
 }
 \value{
-No return value. The function deletes mirrored on the system.
+No return value. The function prints a report on the console.
 }
 \description{
 Print a report at the console with cache statistics
 }
 \examples{
 \dontshow{if (identical(tolower(Sys.getenv("NOT_CRAN")), "true")) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+mirror_deposit(deposit_id = 10959197)
 cache_report()
 \dontshow{\}) # examplesIf}
 }
