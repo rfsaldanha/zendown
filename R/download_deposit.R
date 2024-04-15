@@ -23,37 +23,47 @@ download_deposit <- function(list_deposit, file_name = NULL, dest, quiet = FALSE
 
   # Check internet and Zenodo access
   if(check_internet() == FALSE){
-    cli::cli_alert("It appears that your local Internet connection is not working.")
+    cli::cli_alert_warning("It appears that your local Internet connection is not working or Zenodo is down. No file was donwloaded. Try again later...")
     return(NULL)
   }
 
-  # All files from deposit
+  # Download all files from deposit
   if(is.null(file_name)){
+
+    # Isolate download link and file path
+    task <- tibble::tibble(
+      url = list_deposit$download,
+      file_path = fs::path(dest, list_deposit$filename)
+    )
+
+    # Download
+    res <- curl::multi_download(urls = task$url, destfiles = task$file_path, progress = !quiet)
+
+    # Checksum files
     for(f in 1:nrow(list_deposit)){
-      url <- list_deposit[[f,"download"]]
-
       file_path <- fs::path(dest,list_deposit[[f,"filename"]])
-      checkmate::assert_path_for_output(x = file_path, overwrite = TRUE)
-
-      utils::download.file(url = url, destfile = file_path,
-                    quiet = quiet, mode = "wb")
 
       if(check_md5sum(file_path, list_deposit[[f,"checksum"]]) == FALSE){
-        cli::cli_abort("The file {list_deposit[[f,'filename']]} checksum is different from source. Try download again.")
+        cli::cli_alert_warning("The file {list_deposit[[f,'filename']]} checksum is different from source. Try download again.")
       }
     }
+
+    return(res)
+
   } else { # A specific file
+    # Isolate download link and file path
     file_row <- list_deposit[which(list_deposit$filename==file_name),]
     url <- file_row$download
-
     file_path <- fs::path(dest,file_name)
-    checkmate::assert_path_for_output(x = file_path, overwrite = TRUE)
 
-    utils::download.file(url = url, destfile = file_path,
-                  quiet = quiet, mode = "wb")
+    # Download
+    res <- curl::curl_download(url = url, destfile = file_path, quiet = quiet)
 
+    # Checksum files
     if(check_md5sum(file_path, file_row$checksum) == FALSE){
       cli::cli_alert_danger("The file {file_name} checksum is different from source. Try download again.")
     }
+
+    return(res)
   }
 }
