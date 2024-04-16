@@ -26,5 +26,6 @@ Imports:
 Suggests: 
     testthat (>= 3.0.0)
 Config/testthat/edition: 3
-URL: https://rfsaldanha.github.io/zendown/
+URL: https://rfsaldanha.github.io/zendown/, https://github.com/rfsaldanha/zendown
+BugReports: https://github.com/rfsaldanha/zendown/issues
 Config/Needs/website: rmarkdown
