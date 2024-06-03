@@ -25,11 +25,20 @@ Access, download and locally cache files deposited on Zenodo easily.
 
 ## Installation
 
-You can install the development version of zendown from GitHub with:
+## Installation
+
+You can install the stable release from CRAN.
+
+``` r
+install.packages("zendown")
+library(zendown)
+```
+Or install the development version of from GitHub:
 
 ``` r
 # install.packages("remotes")
 remotes::install_github("rfsaldanha/zendown")
+library(zendown)
 ```
 
 ## Example
