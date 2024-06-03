@@ -81,22 +81,31 @@
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
-<p>You can install the development version of zendown from GitHub with:</p>
+</div>
+<div class="section level2">
+<h2 id="installation-1">Installation<a class="anchor" aria-label="anchor" href="#installation-1"></a>
+</h2>
+<p>You can install the stable release from CRAN.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"zendown"</span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://rfsaldanha.github.io/zendown/">zendown</a></span><span class="op">)</span></span></code></pre></div>
+<p>Or install the development version of from GitHub:</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># install.packages("remotes")</span></span>
-<span><span class="fu">remotes</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"rfsaldanha/zendown"</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu">remotes</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"rfsaldanha/zendown"</span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://rfsaldanha.github.io/zendown/">zendown</a></span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="example">Example<a class="anchor" aria-label="anchor" href="#example"></a>
 </h2>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://rfsaldanha.github.io/zendown/">zendown</a></span><span class="op">)</span></span></code></pre></div>
 <p>This <a href="https://zenodo.org/records/10959197" class="external-link">Zenodo deposit</a> contains RDS files from examples datasets.</p>
 <p>First, you need to find the Zenodo deposit code. It is the number that appears on the end of a Zenodo deposit link. The code number also appears on the Zenodo DOI.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a>https<span class="sc">:</span><span class="er">//</span>zenodo.org<span class="sc">/</span>records<span class="sc">/</span><span class="dv">10959197</span></span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a>https<span class="sc">:</span><span class="er">//</span>zenodo.org<span class="sc">/</span>records<span class="sc">/</span><span class="dv">10959197</span></span></code></pre></div>
 <p>Deposition code: <strong>10959197</strong></p>
 <p>With the deposit code and the desired file name, you can just access the file with the <code>zen_file</code> function.</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">my_iris</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/zen_file.html">zen_file</a></span><span class="op">(</span>deposit_id <span class="op">=</span> <span class="fl">10959197</span>, file_name <span class="op">=</span> <span class="st">"iris.rds"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/readRDS.html" class="external-link">readRDS</a></span><span class="op">(</span><span class="op">)</span></span>
 <span></span>
@@ -119,7 +128,7 @@
 <div class="section level2">
 <h2 id="more-examples">More examples<a class="anchor" aria-label="anchor" href="#more-examples"></a>
 </h2>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># https://zenodo.org/records/10848</span></span>
 <span><span class="fu"><a href="reference/zen_file.html">zen_file</a></span><span class="op">(</span><span class="fl">10848</span>, <span class="st">"DOAJ_Soc_Licenses_Correct.csv"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.csv2</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
@@ -136,7 +145,7 @@
 <span><span class="co">#&gt; 6     6    198 "Soc…  &lt;NA&gt;             http://so… "Associa… French   1950… &lt;NA&gt; </span></span>
 <span><span class="co">#&gt; # ℹ 3 more variables: CC.License.Doaj &lt;chr&gt;, CC.License.Checked &lt;chr&gt;,</span></span>
 <span><span class="co">#&gt; #   Wrong.Cat.Doaj &lt;chr&gt;</span></span></code></pre></div>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># https://zenodo.org/records/10947952</span></span>
 <span><span class="fu"><a href="reference/zen_file.html">zen_file</a></span><span class="op">(</span><span class="fl">10947952</span>, <span class="st">"2m_temperature_max.parquet"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">arrow</span><span class="fu">::</span><span class="fu">read_parquet</span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
@@ -151,7 +160,7 @@
 <span><span class="co">#&gt; 4   1100015 2023-01-04 2m_temperature_max_mean  302.</span></span>
 <span><span class="co">#&gt; 5   1100015 2023-01-05 2m_temperature_max_mean  297.</span></span>
 <span><span class="co">#&gt; 6   1100015 2023-01-06 2m_temperature_max_mean  302.</span></span></code></pre></div>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># https://zenodo.org/records/10889682</span></span>
 <span><span class="fu"><a href="reference/zen_file.html">zen_file</a></span><span class="op">(</span><span class="fl">10889682</span>, <span class="st">"total_precipitation_2023-09-01_2023-09-30_day_sum.nc"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">terra</span><span class="fu">::</span><span class="fu">rast</span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
