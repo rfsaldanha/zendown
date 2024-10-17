@@ -14,8 +14,6 @@ Access, download and locally cache files deposited on Zenodo easily.
 
 ## Installation
 
-## Installation
-
 You can install the stable release from CRAN.
 
 ``` r
