@@ -53,7 +53,7 @@ You also may also want to define a specific folder to be used as cache, like a e
 Edit you `.Renviron` file with `usethis::edit_r_environ()` and add the following line at the end:
 
 ```         
-zendown_cache_dir = C:\my_dir\
+zendown_cache_dir = "C:\my_dir\"
 ```
 
 Substitute \`C:\my\_dir\` with you cache folder path. Save the file and restart. From now on, the cache files will be stored on this folder.
